@@ -23,12 +23,16 @@ export const TransactionStatus = ({ hash }: TransactionStatusProps) => {
 		},
 		enabled: !!hash,
 		refetchInterval: (query) => {
+			if (query.state.data?.error) {
+				return false;
+			}
+
 			if (query.state.data?.success && (
 				query.state.data.data?.status == "succeeded"  || 
 				query.state.data.data?.status == "failed")
 			)
 				return false; 
-			return 3000
+			return 3000;
 		},
 	});
 

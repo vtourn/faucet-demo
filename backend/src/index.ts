@@ -95,7 +95,7 @@ app.get('/tx/:hash', async (request: Request, response: Response) => {
 
     // If receipt is not ready yet
     if (!receipt) {
-        response.status(200)
+        return response.status(200)
             .json(
                 ok({status: "pending", blockNum: null})
             );
